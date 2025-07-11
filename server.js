@@ -4,16 +4,26 @@ const dotenv = require("dotenv");
 const cors = require("cors");
 const authRoutes = require("./routes/auth");
 
-dotenv.config();
+require('dotenv').config();
+const { MongoClient, ServerApiVersion } = require('mongodb');
 
-const app = express();
-app.use(cors());
-app.use(express.json());
+const uri = process.env.MONGO_URI;
 
-app.use("/api/auth", authRoutes);
-mongoose.connect(process.env.MONGO_URI)
-mongoose
-  .connect(process.env.MONGO_URI)
-  .then(() => app.listen(5000, () => console.log("✅ Server running on http://localhost:5000")))
-  .catch((err) => console.error("❌ MongoDB error:", err));
+const client = new MongoClient(uri, {
+  serverApi: {
+    version: ServerApiVersion.v1,
+    strict: true,
+    deprecationErrors: true,
+  }
+});
 
+async function run() {
+  try {
+    await client.connect();
+    await client.db("admin").command({ ping: 1 });
+    console.log("✅ Pinged your deployment. Connected to MongoDB!");
+  } finally {
+    await client.close();
+  }
+}
+run().catch(console.dir);
