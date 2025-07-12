@@ -12,12 +12,7 @@ app.use(cors());
 app.use(express.json());
 
 
-app.use(cors({
-  origin: [
-    "https://my-project-git-main-sadeeshkumars-projects.vercel.app"
-  ],
-  credentials: true
-}));
+
 
 
 // ✅ Get MongoDB URI from environment variable
