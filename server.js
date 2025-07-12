@@ -38,3 +38,7 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`✅ Server running on http://localhost:${PORT}`);
 });
+app.post('/api/auth/register', async (req, res) => {
+  // registration logic here
+});
+
