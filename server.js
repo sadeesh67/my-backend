@@ -14,6 +14,12 @@ app.use(express.json());
 // ✅ Get MongoDB URI from environment variable
 const mongoURI = process.env.MONGO_URI;
 
+
+// ✅ TEST ROUTE (for step 3)
+app.get("/api/test", (req, res) => {
+  res.send("✅ Backend is working!");
+});
+
 // ✅ Connect to MongoDB using mongoose
 mongoose.connect(mongoURI, {
   useNewUrlParser: true,
