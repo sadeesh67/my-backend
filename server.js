@@ -8,11 +8,15 @@ const cors = require('cors');
 const app = express();
 
 // Middleware
+const cors = require('cors');
+
+// Allow your Netlify domain
 app.use(cors({
-  origin: ["https://your-netlify-site.netlify.app"],
+  origin: 'https://silver-taffy-f55f7e.netlify.app',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
 }));
-app.use(express.json());
+
 
 
 
