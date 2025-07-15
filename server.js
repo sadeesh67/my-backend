@@ -10,7 +10,7 @@ const app = express();
 
 // ✅ Middleware
 app.use(cors({
-  origin: 'https://silver-taffy-f55f7e.netlify.app',
+  origin: 'https://my-project-git-main-sadeeshkumars-projects.vercel.app/',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
 }));
