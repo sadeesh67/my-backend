@@ -16,6 +16,14 @@ app.use(cors({
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
 }));
+app.post("/api/auth/register", async (req, res) => {
+  const { email, password } = req.body;
+  const user = new User({ email, password });
+  await user.save();
+  console.log("✅ User saved:", user); // <-- Add this
+  res.status(201).send({ msg: "User registered" });
+});
+
 
 
 
