@@ -16,13 +16,21 @@ app.use(cors({
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
 }));
+const User = require('./models/User');
+
 app.post("/api/auth/register", async (req, res) => {
-  const { email, password } = req.body;
-  const user = new User({ email, password });
-  await user.save();
-  console.log("✅ User saved:", user); // <-- Add this
-  res.status(201).send({ msg: "User registered" });
+  try {
+    const { email, password } = req.body;
+    const user = new User({ email, password });
+    await user.save();
+    console.log("✅ User saved:", user);
+    res.status(201).send({ msg: "User registered" });
+  } catch (error) {
+    console.error("❌ Registration error:", error);
+    res.status(500).send({ msg: "Internal Server Error" });
+  }
 });
+
 
 
 
